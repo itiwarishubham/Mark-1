@@ -1,0 +1,36 @@
+
+ <html>
+ <body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+function createNew(evt){
+//alert(evt.atrribute);
+  var cur=$("input:text").length+1;
+  
+     $('#wheather').append('<div class="form-group"><input name="season'+cur+'" id="season'+cur+'" type="text"><input name="pic'+cur+'" id="pic'+cur+'" type="file"><div class="secondsec"><button type="button" onclick="createNew(this);"><i>+</i></button><button type="button" onclick="deleteNew(this)"><i>-</i></button></div></div>');
+     $(evt).css('display', 'none');
+     $(evt).siblings("button.btn-danger").css('display', 'block');
+  
+}
+function deleteNew(evnt){
+     $(evnt).closest(".form-group").remove();
+   var i=0;
+   $('input[type="text"]').each(function(){
+      $(this).attr('name', 'season' + i); 
+      $(this).attr('id', 'season' + i); 
+     i++;
+  });
+}
+</script>
+<div id="wheather">
+<div class="form-group">
+<input name="season0" id="season0" class="form-control firstsec" type="text">
+<input name="pic0" id="pic0"  type="file">
+<div class="secondsec">
+<button type="button" class="btn btn-sm btn-success exp-add" style="line-height:12px;" onclick="createNew(this);">+<i class="fa fa-plus" aria-hidden="true"></i></button>
+<button type="button" class="btn btn-sm btn-danger exp-minus" style="line-height:12px;display:none;" onclick="deleteNew(this)">-<i class="fa fa-minus" aria-hidden="true"></i></button>
+</div>                                                            
+ </div>
+ </div>
+ </body>
+ </html>
